@@ -1,0 +1,52 @@
+type Query {
+    order(id:ID):Order
+    orderOfConsumer(consumerId:ID):[Order]
+}
+type Mutation{
+    placeOrder(orderInput:OrderInput):Order
+    updateOrder(orderInput:OrderInput, orderId:ID):Order
+}
+
+type Order {
+    id:ID
+    consumer:Consumer
+    restaurant:Restaurant
+    orderItemList:[OrderItem]
+    totalPrice:String
+    status:String
+}
+type OrderItem {
+    id: ID
+    goodsName: String
+    count:Int
+    price:String
+}
+
+
+type Consumer {
+    id: ID
+    name: String
+    mobile: String
+    set:String
+    address:String
+}
+type Restaurant{
+    id:ID
+    name:String
+    address:String
+}
+
+input OrderInput{
+    id:ID
+    consumerId:ID
+    restaurantId:ID
+    orderItemList:[OrderItemInput]
+    totalPrice:String
+    status:String
+}
+input OrderItemInput{
+    orderId:Int
+    goodsName:String
+    count:Int
+    price:String
+}
